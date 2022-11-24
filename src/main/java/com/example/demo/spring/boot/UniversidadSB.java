@@ -1,6 +1,9 @@
-package com.example.demo.herencia;
+package com.example.demo.spring.boot;
 
-public class Universidad {
+import org.springframework.stereotype.Component;
+
+@Component
+public class UniversidadSB {
 
 	private String nombre;
 	private String facultad;
@@ -50,7 +53,7 @@ public class Universidad {
 			return "\t[Nombre: " + nombre 
 					+ "\n\t\t Facultad: " + facultad 
 					+ "\n\t\t Gratuidad: " + gratuidad 
-					+ "\n\t\t Descuento: " + (descuento*100) +"%" 
+					+ "\n\t\t Descuento: " + descuento*100 +"%" 
 					+ "\n\t\t Valor a pagar: " + valorFinal + "]";
 		}
 		
