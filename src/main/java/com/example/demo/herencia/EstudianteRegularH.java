@@ -1,6 +1,6 @@
 package com.example.demo.herencia;
 
-public class EstudianteRegular extends Estudiante {
+public class EstudianteRegularH extends EstudianteH {
 	
 	private boolean miembroClub;
 	

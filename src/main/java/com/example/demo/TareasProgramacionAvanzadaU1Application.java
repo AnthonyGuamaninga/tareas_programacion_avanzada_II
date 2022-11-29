@@ -34,7 +34,6 @@ public class TareasProgramacionAvanzadaU1Application implements CommandLineRunne
 		
 		estudianteR.generaEstudiante("Maximiliano Jacome", "1293200472", "Regular");
 		universidad.registraUni("UTE", "Ciencias de la Salud", estudianteR.calculaDescuento());
-		System.out.println(estudianteR.calculaDescuento());
 		
 		matricula.generaMatricula("Medicina", "Segundo", LocalDateTime.of(10, 11,22,8,11), universidad, estudianteR);
 		

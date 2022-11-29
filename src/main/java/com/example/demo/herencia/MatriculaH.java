@@ -2,17 +2,17 @@ package com.example.demo.herencia;
 
 import java.time.LocalDateTime;
 
-public class Matricula {
+public class MatriculaH {
 
 	private LocalDateTime fechaRegistro;
 	private LocalDateTime fechaInicio;
-	private Universidad universidad;
-	private Estudiante estudiante;
+	private UniversidadH universidad;
+	private EstudianteH estudiante;
 	private String carrera;
 	private String nivel;
 
 	public void generaMatricula(String carrera, String nivel, LocalDateTime fechaInicio,
-			Universidad universidad, Estudiante estudiante) {
+			UniversidadH universidad, EstudianteH estudiante) {
 		this.carrera=carrera;
 		this.nivel=nivel;
 		this.fechaInicio=fechaInicio;
@@ -25,7 +25,7 @@ public class Matricula {
 		
 	}
 
-	private void imprimeMatricula(Matricula matricula) {
+	private void imprimeMatricula(MatriculaH matricula) {
 		System.out.println(matricula);
 	}
 

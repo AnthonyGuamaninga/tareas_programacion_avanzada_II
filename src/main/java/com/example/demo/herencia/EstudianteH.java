@@ -1,6 +1,6 @@
 package com.example.demo.herencia;
 
-public class Estudiante {
+public class EstudianteH {
 	
 	private String nombre;
 	private String cedula;

@@ -7,11 +7,11 @@ public class MainHerencia {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Matricula matricula = new Matricula();
-		EstudianteRegular estudianteR= new EstudianteRegular();
-		EstudianteNoRegular estudianteNR = new EstudianteNoRegular();
-		Universidad universidad = new Universidad();
-		Universidad universidad1 = new Universidad();
+		MatriculaH matricula = new MatriculaH();
+		EstudianteRegularH estudianteR= new EstudianteRegularH();
+		EstudianteNoRegularH estudianteNR = new EstudianteNoRegularH();
+		UniversidadH universidad = new UniversidadH();
+		UniversidadH universidad1 = new UniversidadH();
 		
 		universidad.registraUni("UCE", "Ingerieria y Ciencias Aplicadas", estudianteR.calculaDescuento());
 		universidad1.registraUni("UTE", "Medicina", estudianteNR.calculaDescuento());
