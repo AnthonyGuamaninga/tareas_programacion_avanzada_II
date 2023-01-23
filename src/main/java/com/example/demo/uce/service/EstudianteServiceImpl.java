@@ -4,36 +4,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.uce.modelo.Estudiante;
-import com.example.demo.uce.repository.IEstudianteRepository;
-
+import com.example.demo.uce.repository.IEstudianteRepo;
 @Service
-public class EstudianteServiceImpl implements IEstudianteService{
+public class EstudianteServiceImpl implements IEstudianteService {
 
 	@Autowired
-	private IEstudianteRepository estudianteRepository;
+	private IEstudianteRepo estudianteRepo;
 	
 	@Override
 	public void registrar(Estudiante estudiante) {
 		// TODO Auto-generated method stub
-		this.estudianteRepository.insertar(estudiante);
+		this.estudianteRepo.insertar(estudiante);
 	}
 
 	@Override
-	public void modificar(Estudiante estudiante) {
+	public void actualizar(Estudiante estudiante) {
 		// TODO Auto-generated method stub
-		this.estudianteRepository.actualizar(estudiante);
+		this.estudianteRepo.actualizar(estudiante);
 	}
 
 	@Override
 	public Estudiante buscar(Integer id) {
 		// TODO Auto-generated method stub
-		return this.estudianteRepository.buscar(id);
+		return this.estudianteRepo.buscar(id);
 	}
 
 	@Override
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
-		this.estudianteRepository.eliminar(id);
+		this.estudianteRepo.eliminar(id);
 	}
 
 }

@@ -1,23 +1,30 @@
 package com.example.demo;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.demo.uce.modelo.Ciudadano;
+import com.example.demo.uce.modelo.Empleado;
 import com.example.demo.uce.modelo.Estudiante;
-import com.example.demo.uce.modelo.Profesor;
+import com.example.demo.uce.service.ICiudadanoService;
+import com.example.demo.uce.service.IEmpleadoService;
 import com.example.demo.uce.service.IEstudianteService;
-import com.example.demo.uce.service.IProfesorService;
 
 @SpringBootApplication
 public class TareasPaU2AgApplication implements CommandLineRunner{
 	
 	@Autowired
 	private IEstudianteService estudianteService;
+	@Autowired 
+	private IEmpleadoService empleadoService;
 	@Autowired
-	private IProfesorService iProfesorService;
-
+	private ICiudadanoService ciudadanoService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(TareasPaU2AgApplication.class, args);
 	}
@@ -25,56 +32,50 @@ public class TareasPaU2AgApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		// >>> PROFESOR
-		// Insertar
-		Profesor profesor = new Profesor();
-		//profesor.setId(1);
-		profesor.setNombre("Ramiro");
-		profesor.setApellido("Carvajal");
-		profesor.setCedula("1742250437");
-		profesor.setCiudad("Guayaquil");
-		profesor.setGenero("M");
-		profesor.setTitulo("Ingenieria Quimica");
-		this.iProfesorService.registrar(profesor);
-		
-		// Buscar
-		Profesor profesor2 = this.iProfesorService.buscar(1);
-		System.out.println("Buscando profesor...\n"+profesor2);
-		
-		// Actualizar
-		Profesor profesor3 = this.iProfesorService.buscar(2);
-		profesor3.setCedula("142355953");
-		this.iProfesorService.modificar(profesor3);
-		
-		// Eliminar
-		this.iProfesorService.eliminar(3);
-		
-		// >>> ESTUDINATE
-		// INSERTAR
+		// INSERTAR --> ESTUDIANTE
 		Estudiante estudiante = new Estudiante();
-		//estudiante.setId(1);
-		estudiante.setNombre("Anthony");
-		estudiante.setApellido("Guamaninga");
-		estudiante.setCedula("1753100724");
-		estudiante.setGenero("M");
-		estudiante.setCiudad("Quito");		
+		estudiante.setApellido("Torres");
+		estudiante.setCedula("1133611347");
+		estudiante.setCiudad("Loja");
+		estudiante.setGenero("Femanino");
+		estudiante.setNombre("Sandra");		
 		//this.estudianteService.registrar(estudiante);
 		
+		// Ingresar --> CIUDADANO Y EMPLEADO
+		Ciudadano ciudadano = new Ciudadano();
+		ciudadano.setNombre("Alfred");
+		ciudadano.setApellido("Yaguache");
 		
-		// ACTUALIZAR
-		Estudiante estudiante2 = this.estudianteService.buscar(3);
-		estudiante2.setNombre("Alfredo");
-		estudiante2.setApellido("Yaguache");
-		estudiante2.setCedula("1103388752");
-		//this.estudianteService.modificar(estudiante2);
+		Empleado empleado = new Empleado();
+		empleado.setSalario(new BigDecimal(20));
+		empleado.setFechaIngreso(LocalDateTime.now());
+		empleado.setCiudadano(ciudadano);
 		
-		// BUSCAR
-		//Estudiante estudiante3 = this.estudianteService.buscar(2);
-		//System.out.println("Buscando Estudiante...\n"+estudiante3);
+		ciudadano.setEmpleado(empleado);
+		this.empleadoService.ingresar(empleado); // Al ingresar un Empleado se ingresa un Ciudadano
+		//this.ciudadanoService.guardar(ciudadano);
 		
 		
-		// ELIMINAR
-		//this.estudianteService.eliminar(4);
+		
+		
+		// BUSCAR --> CIUDADANO Y EMPLEADO
+		this.ciudadanoService.buscar(1);
+		this.empleadoService.buscar(1);
+		
+		// ACTUALIZAR --> CIUDADANO Y EMPLEADO
+		Ciudadano ciudModificado = this.ciudadanoService.buscar(1);
+		ciudModificado.setNombre("Anghelo");
+		this.ciudadanoService.modificar(ciudModificado);
+		
+		Empleado emplModificado = this.empleadoService.buscar(1);
+		emplModificado.setSalario(new BigDecimal(3000));
+		this.empleadoService.modificar(emplModificado);
+		
+		
+		// ELIMINAR --> CIUDADANO Y EMPLEADO		
+		this.ciudadanoService.eliminar(1);
+		this.empleadoService.eliminar(1);
+		
 		
 	}
 
