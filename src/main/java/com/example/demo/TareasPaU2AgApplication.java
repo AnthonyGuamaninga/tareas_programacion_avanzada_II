@@ -1,29 +1,26 @@
 package com.example.demo;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.uce.modelo.Ciudadano;
-import com.example.demo.uce.modelo.Empleado;
-import com.example.demo.uce.modelo.Estudiante;
-import com.example.demo.uce.service.ICiudadanoService;
-import com.example.demo.uce.service.IEmpleadoService;
-import com.example.demo.uce.service.IEstudianteService;
+import com.example.demo.tarea9.modelo.Estudiante;
+import com.example.demo.tarea9.modelo.Facultad;
+import com.example.demo.tarea9.repository.IFacultadRepo;
+import com.example.demo.tarea9.service.IEstudianteService;
+import com.example.demo.tarea9.service.IFacultadService;
 
 @SpringBootApplication
 public class TareasPaU2AgApplication implements CommandLineRunner{
-	
+		
 	@Autowired
 	private IEstudianteService estudianteService;
-	@Autowired 
-	private IEmpleadoService empleadoService;
 	@Autowired
-	private ICiudadanoService ciudadanoService;
+	private IFacultadService facultadService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(TareasPaU2AgApplication.class, args);
@@ -32,49 +29,41 @@ public class TareasPaU2AgApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		// INSERTAR --> ESTUDIANTE
+		// Insertar
+		Facultad facultad = new Facultad();
+		facultad.setNombre("Facultad de Ingeniería, Ciencias Físicas y Matemática");
+		facultad.setUbicacion("Gilberto Gato y Gaspar de carvajal ");
+		facultad.setUniversidad("UCE");
+		
+		List<Estudiante> listaE = new ArrayList<>();
 		Estudiante estudiante = new Estudiante();
-		estudiante.setApellido("Torres");
-		estudiante.setCedula("1133611347");
-		estudiante.setCiudad("Loja");
-		estudiante.setGenero("Femanino");
-		estudiante.setNombre("Sandra");		
-		//this.estudianteService.registrar(estudiante);
+		estudiante.setCedula("173245883");
+		estudiante.setNombre("Anthony");
+		estudiante.setApellido("Guamaninga");
+		estudiante.setFacultad(facultad);
+		listaE.add(estudiante);
 		
-		// Ingresar --> CIUDADANO Y EMPLEADO
-		Ciudadano ciudadano = new Ciudadano();
-		ciudadano.setNombre("Alfred");
-		ciudadano.setApellido("Yaguache");
+		Estudiante estudiante2 = new Estudiante();
+		estudiante2.setCedula("173245883");
+		estudiante2.setNombre("Anthony");
+		estudiante2.setApellido("Guamaninga");
+		estudiante2.setFacultad(facultad);
+		listaE.add(estudiante2);
 		
-		Empleado empleado = new Empleado();
-		empleado.setSalario(new BigDecimal(20));
-		empleado.setFechaIngreso(LocalDateTime.now());
-		empleado.setCiudadano(ciudadano);
+		facultad.setListaEstu(listaE);
+		this.facultadService.ingresar(facultad);
 		
-		ciudadano.setEmpleado(empleado);
-		this.empleadoService.ingresar(empleado); // Al ingresar un Empleado se ingresa un Ciudadano
-		//this.ciudadanoService.guardar(ciudadano);
+		// Buscar
+		this.facultadService.buscar(1);
 		
+		// Actualizar
+		Facultad facultadMod = this.facultadService.buscar(1);
+		facultadMod.setNombre("Ingenieria y Ciencias Aplicadas");
+		this.facultadService.modificar(facultadMod);
 		
+		// Eliminar
+		this.facultadService.borrar(1);
 		
-		
-		// BUSCAR --> CIUDADANO Y EMPLEADO
-		this.ciudadanoService.buscar(1);
-		this.empleadoService.buscar(1);
-		
-		// ACTUALIZAR --> CIUDADANO Y EMPLEADO
-		Ciudadano ciudModificado = this.ciudadanoService.buscar(1);
-		ciudModificado.setNombre("Anghelo");
-		this.ciudadanoService.modificar(ciudModificado);
-		
-		Empleado emplModificado = this.empleadoService.buscar(1);
-		emplModificado.setSalario(new BigDecimal(3000));
-		this.empleadoService.modificar(emplModificado);
-		
-		
-		// ELIMINAR --> CIUDADANO Y EMPLEADO		
-		this.ciudadanoService.eliminar(1);
-		this.empleadoService.eliminar(1);
 		
 		
 	}

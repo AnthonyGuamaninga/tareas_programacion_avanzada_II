@@ -1,14 +1,15 @@
-package com.example.demo.uce.service;
+package com.example.demo.tarea9.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.uce.modelo.Estudiante;
-import com.example.demo.uce.repository.IEstudianteRepo;
+import com.example.demo.tarea9.modelo.Estudiante;
+import com.example.demo.tarea9.repository.IEstudianteRepo;
+
 @Service
 public class EstudianteServiceImpl implements IEstudianteService {
 
-	@Autowired
+	@Autowired 
 	private IEstudianteRepo estudianteRepo;
 	
 	@Override
@@ -18,7 +19,7 @@ public class EstudianteServiceImpl implements IEstudianteService {
 	}
 
 	@Override
-	public void actualizar(Estudiante estudiante) {
+	public void modificar(Estudiante estudiante) {
 		// TODO Auto-generated method stub
 		this.estudianteRepo.actualizar(estudiante);
 	}
@@ -30,7 +31,7 @@ public class EstudianteServiceImpl implements IEstudianteService {
 	}
 
 	@Override
-	public void eliminar(Integer id) {
+	public void borrar(Integer id) {
 		// TODO Auto-generated method stub
 		this.estudianteRepo.eliminar(id);
 	}

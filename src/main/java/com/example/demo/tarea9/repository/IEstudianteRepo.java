@@ -1,6 +1,6 @@
-package com.example.demo.uce.repository;
+package com.example.demo.tarea9.repository;
 
-import com.example.demo.uce.modelo.Estudiante;
+import com.example.demo.tarea9.modelo.Estudiante;
 
 public interface IEstudianteRepo {
 	
